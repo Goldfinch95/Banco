@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/10403b9d7f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="dinero.css">
+    <title>Bienvenido</title>
+</head>
+<body>
+    <div class="menu">
+        <h3 class="presentación">Banco Gringotts</h3>
+    </div>
+    <h1 class="titulo">Elija la operación que desea realizar</h1>
+    <div class="contenedor">
+        <button id="ingresar" class="boton">Ingresar</button>
+        <button id="egresar" class="boton">Egresar</button>
+    </div>
+    <div class="contenedor__ingresar">
+        <input type="text" placeholder="Tipo de ingreso" class="input">
+        <input type="text" placeholder="Descripción" class="input">
+        <input type="number" placeholder="Monto" class="input">
+    </div>
+    <div class="contenedor__listo">
+        <button class="listo"><i class="fa-solid fa-circle-check"></i></button>
+    </div>
+    <div class="contenedor__egresar">
+        <input type="text" placeholder="Tipo de egreso" class="input">
+        <input type="text" placeholder="Descripción" class="input">
+        <input type="number" placeholder="Monto" class="input">
+        <button class="listo"><i class="fa-solid fa-circle-check"></i></button>
+    </div>
+    <div class="contenedor__saldo">
+        <h2>Su Saldo total es de </h6>
+    </div>
+    <div class="contenedor__salir">
+        <button id="salir" class="boton__2"><i class="fa-solid fa-door-open"></i></button>
+    </div>
+    <script src="dinero.js"></script>
+    
+</body>
+</html>

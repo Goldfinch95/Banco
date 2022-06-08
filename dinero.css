@@ -1,0 +1,96 @@
+body{
+    background-image: url(marmol.jpg);
+    height: 100vh;
+}
+
+.menu{
+    background-color: #C5B358;
+    border: 0;
+}
+
+.presentación{
+    color: white;
+    padding: 6px 20px;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor__ingresar{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contenedor__egresar{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.contenedor__listo{
+    display: flex;
+    justify-content: right;
+    flex-wrap: wrap;
+}
+
+.contenedor__saldo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 10vh;
+}
+
+.contenedor__salir{
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    height: 57vh;
+}
+
+#ingresar{
+    background-color: #0018a8;
+    color: #f8f8ff;
+}
+
+#ingresar:hover{
+    background-color: #4488bf;
+}
+
+#egresar{
+    background-color: #b70b0d;
+    color: #f8f8ff;
+}
+
+#egresar:hover{
+    background-color: #ef6b84;
+}
+
+.boton{
+    width: 20%;
+    margin: 10px 20px;
+    border-radius: 30px;
+}
+.input{
+    width: 22%;
+    margin: 3px 5px;
+
+}
+.listo{
+    height: 20%;
+    border: none;
+    background: none;
+}
+
+.boton__2{
+    height: 10%;
+    width: 50px;
+    margin: 10px 20px;
+    border-radius: 50%;
+}
+
+.boton__2:hover{
+    background-color: #dcdcdc;
+}
