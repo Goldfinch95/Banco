@@ -19,26 +19,26 @@
         <button id="egresar" class="boton">Egresar</button>
     </div>
     <div class="contenedor__ingresar">
-        <input type="text" placeholder="Tipo de ingreso" class="input">
-        <input type="text" placeholder="Descripción" class="input">
-        <input type="number" placeholder="Monto" class="input">
-    </div>
-    <div class="contenedor__listo">
-        <button class="listo"><i class="fa-solid fa-circle-check"></i></button>
+        <form id="form">
+            <input type="text" placeholder="Descripción" class="input">
+            <input type="number" placeholder="Monto" min="0" oninput="validity.valid||(value='');" pattern="^[0-9]+" class="input">
+        </form>
     </div>
     <div class="contenedor__egresar">
-        <input type="text" placeholder="Tipo de egreso" class="input">
         <input type="text" placeholder="Descripción" class="input">
-        <input type="number" placeholder="Monto" class="input">
-        <button class="listo"><i class="fa-solid fa-circle-check"></i></button>
+        <input type="number" placeholder="Monto" min="0" oninput="validity.valid||(value='');" pattern="^[0-9]+" class="input"S>
     </div>
-    <div class="contenedor__saldo">
-        <h2>Su Saldo total es de </h6>
+    <div class="contenedor__listo">
+        <button class="listo"><i class="fa-regular fa-circle-check"></i></button>
     </div>
+    <div class="contenedor__abajo"> 
+    <div id="contenedor__saldo">
+        <h2 id="saldo">Su Saldo total es de </h2>
+    </div>
+</div>
     <div class="contenedor__salir">
         <button id="salir" class="boton__2"><i class="fa-solid fa-door-open"></i></button>
     </div>
     <script src="dinero.js"></script>
-    
 </body>
 </html>

@@ -34,20 +34,28 @@ body{
     display: flex;
     justify-content: right;
     flex-wrap: wrap;
+    height: 50px;
 }
 
-.contenedor__saldo {
+.contenedor__abajo{
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contenedor__saldo {
+    display: inline-flex;
     align-items: flex-end;
     justify-content: center;
-    height: 10vh;
+    height: 35vh;
+    
 }
 
 .contenedor__salir{
     display: flex;
     align-items: flex-end;
     justify-content: end;
-    height: 57vh;
+    height: 20vh;
 }
 
 #ingresar{
@@ -76,18 +84,32 @@ body{
 .input{
     width: 22%;
     margin: 3px 5px;
-
+    text-align: center;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .listo{
-    height: 20%;
+    font-size: 55px;
+    height: 50px;
+    margin: 0px 180px;
     border: none;
     background: none;
+    border-radius: 50%;
+}
+
+.listo:hover{
+    background-color: #dcdcdc;
 }
 
 .boton__2{
-    height: 10%;
+    height: 40%;
     width: 50px;
-    margin: 10px 20px;
+    margin: 10px 40px;
     border-radius: 50%;
 }
 
