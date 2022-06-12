@@ -19,18 +19,42 @@ Cuando el usuario elija la opción salir del programa se deberá visualizar:
 9.	El saldo (dinero que le quedó al usuario). Si el saldo del usuario es mayor o igual a cero se deberá mostrar en verde. Si es menor que cero en rojo.*/
 
 const botonIngresar = document.getElementById ("ingresar");
+const botonEgresar = document.getElementById ("egresar");
 const monto = document.getElementById ("numero");
+
 let conjuntoIngresos=[];
 
 const sumarIngresos = ()=>{
-    let total = 0;
+    let totalIngresos = 0;
     conjuntoIngresos.push(Number(monto.value));
-    console.log(conjuntoIngresos);
     for (let i = 0; i<conjuntoIngresos.length; i++){
-        total = total + conjuntoIngresos[i]
+        totalIngresos = totalIngresos + conjuntoIngresos[i]
     }
-    document.getElementById ("saldo").innerHTML = (` $ ${total}`);
+    //document.getElementById ("saldo").innerHTML = (` $ ${total}`);//
+    return totalIngresos
+}
+
+const restarIngresos = ()=>{
+    let totalEgresos = 0;
+    conjuntoIngresos.push(Number(monto.value));
+    for (let i=0; i<conjuntoIngresos.length;i++){
+        totalEgresos= totalEgresos - conjuntoIngresos[i]
+    }
+    //document.getElementById ("saldo").innerHTML= (`$ ${total}`);//
+    return totalEgresos
+}
+
+const hacerLasCuentas =()=>{
+    const nuevoIngreso = sumarIngresos();
+    const nuevoGasto = restarIngresos();
+    saldo = totalIngresos - totalEgresos;
+    return saldo
+}
+
+const tuSaldo=()=>{
+    const saldo = hacerLasCuentas();
+    document.getElementById ("saldo").innerHTML= (`$ ${saldo}`);
 }
 
 botonIngresar.addEventListener ("click", sumarIngresos);
-
+botonEgresar.addEventListener ("click", restarIngresos);
