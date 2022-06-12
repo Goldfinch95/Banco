@@ -18,20 +18,19 @@ Cuando el usuario elija la opción salir del programa se deberá visualizar:
 8.	El promedio de pesos por egresos. 
 9.	El saldo (dinero que le quedó al usuario). Si el saldo del usuario es mayor o igual a cero se deberá mostrar en verde. Si es menor que cero en rojo.*/
 
-const depositar = document.getElementById("ingresar");
+const botonIngresar = document.getElementById ("ingresar");
+const monto = document.getElementById ("numero");
+let conjuntoIngresos=[];
 
-const mostrarInput =()=>{
-    const formulario = document.getElementById ("form");
-        if(formulario.style.display === "none"){
-            formulario.style.display = "flex";
+const sumarIngresos = ()=>{
+    let total = 0;
+    conjuntoIngresos.push(Number(monto.value));
+    console.log(conjuntoIngresos);
+    for (let i = 0; i<conjuntoIngresos.length; i++){
+        total = total + conjuntoIngresos[i]
     }
-        else{
-            formulario.style.display = "none";
-    }
+    document.getElementById ("saldo").innerHTML = (` $ ${total}`);
 }
 
-depositar.addEventListener ("click", mostrarInput);
-
-
-
+botonIngresar.addEventListener ("click", sumarIngresos);
 

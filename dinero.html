@@ -7,38 +7,30 @@
     <script src="https://kit.fontawesome.com/10403b9d7f.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="dinero.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <title>Bienvenido</title>
 </head>
 <body>
     <div class="menu">
+        <img src="oro.png" class="logo">
         <h3 class="presentación">Banco Gringotts</h3>
     </div>
-    <h1 class="titulo">Elija la operación que desea realizar</h1>
     <div class="contenedor">
-        <button id="ingresar" class="boton">Ingresar</button>
-        <button id="egresar" class="boton">Egresar</button>
+        <div class="vidrio">
+            <div class="titulo">
+                <h1 class="titulo">Ingrese los datos</h1>
+                <form id="form">
+                    <input type="text" placeholder="Descripción" class="input">
+                    <input type="number" placeholder="Monto" min="0" oninput="validity.valid||(value='');" pattern="^[0-9]+" class="input" id="numero">
+                </form>
+                <button id="ingresar" class="boton">Ingresar</button>
+                <button id="egresar" class="boton">Egresar</button>
+                <h2 id="saldo"> $ </h2>
+                <button id="salir" class="boton__2"><i class="fa-solid fa-door-open"></i></button>
+                </div>
+            </div>   
+        </div>
     </div>
-    <div class="contenedor__ingresar">
-        <form id="form">
-            <input type="text" placeholder="Descripción" class="input">
-            <input type="number" placeholder="Monto" min="0" oninput="validity.valid||(value='');" pattern="^[0-9]+" class="input">
-        </form>
-    </div>
-    <div class="contenedor__egresar">
-        <input type="text" placeholder="Descripción" class="input">
-        <input type="number" placeholder="Monto" min="0" oninput="validity.valid||(value='');" pattern="^[0-9]+" class="input"S>
-    </div>
-    <div class="contenedor__listo">
-        <button class="listo"><i class="fa-regular fa-circle-check"></i></button>
-    </div>
-    <div class="contenedor__abajo"> 
-    <div id="contenedor__saldo">
-        <h2 id="saldo">Su Saldo total es de </h2>
-    </div>
-</div>
-    <div class="contenedor__salir">
-        <button id="salir" class="boton__2"><i class="fa-solid fa-door-open"></i></button>
-    </div>
-    <script src="dinero.js"></script>
+<script src="dinero.js"></script>
 </body>
 </html>
