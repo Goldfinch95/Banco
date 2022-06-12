@@ -21,40 +21,35 @@ Cuando el usuario elija la opción salir del programa se deberá visualizar:
 const botonIngresar = document.getElementById ("ingresar");
 const botonEgresar = document.getElementById ("egresar");
 const monto = document.getElementById ("numero");
+const descripcion = document.getElementById ("descripcion");
 
 let conjuntoIngresos=[];
+let conjuntoGastos =[];
 
-const sumarIngresos = ()=>{
-    let totalIngresos = 0;
-    conjuntoIngresos.push(Number(monto.value));
-    for (let i = 0; i<conjuntoIngresos.length; i++){
-        totalIngresos = totalIngresos + conjuntoIngresos[i]
-    }
-    //document.getElementById ("saldo").innerHTML = (` $ ${total}`);//
-    return totalIngresos
+const cargarIngresos =()=>{
+conjuntoIngresos.push({
+    tipoTransaccion: "Ingreso",
+    descripcion: descripcion.value,
+    monto: (Number(monto.value)),
+})
+mostrarSaldoTotal ();
+} 
+
+const cargarGastos=()=>{
+    conjuntoGastos.push ({
+    tipoTransaccion: "Egreso",
+    descripcion: descripcion.value,
+    monto: (Number(monto.value)),
+})
+mostrarSaldoTotal();
 }
 
-const restarIngresos = ()=>{
-    let totalEgresos = 0;
-    conjuntoIngresos.push(Number(monto.value));
-    for (let i=0; i<conjuntoIngresos.length;i++){
-        totalEgresos= totalEgresos - conjuntoIngresos[i]
-    }
-    //document.getElementById ("saldo").innerHTML= (`$ ${total}`);//
-    return totalEgresos
+const mostrarSaldoTotal = ()=>{
+    let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
+    let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
+    document.getElementById ("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
+    console.log(conjuntoIngresos, conjuntoGastos);
 }
 
-const hacerLasCuentas =()=>{
-    const nuevoIngreso = sumarIngresos();
-    const nuevoGasto = restarIngresos();
-    saldo = totalIngresos - totalEgresos;
-    return saldo
-}
-
-const tuSaldo=()=>{
-    const saldo = hacerLasCuentas();
-    document.getElementById ("saldo").innerHTML= (`$ ${saldo}`);
-}
-
-botonIngresar.addEventListener ("click", sumarIngresos);
-botonEgresar.addEventListener ("click", restarIngresos);
+botonIngresar.addEventListener ("click", cargarIngresos);
+botonEgresar.addEventListener ("click", cargarGastos);
