@@ -141,3 +141,21 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   margin-bottom: 20px;
 }
+
+.grilla{
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background: rgba(255, 255, 255, 0.46);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.2px);
+    -webkit-backdrop-filter: blur(4.2px);
+    }
+    
+    .ingresos { grid-area: 1 / 1 / 2 / 2; }
+    .gastos { grid-area: 1 / 2 / 2 / 3; }
+    .cantidadDeIngresos { grid-area: 2 / 1 / 3 / 2;}
+    .cantidadDeGastos { grid-area: 2 / 2 / 3 / 3; }}

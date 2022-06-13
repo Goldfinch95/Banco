@@ -22,9 +22,14 @@ const botonIngresar = document.getElementById ("ingresar");
 const botonEgresar = document.getElementById ("egresar");
 const monto = document.getElementById ("numero");
 const descripcion = document.getElementById ("descripcion");
+const botonSalir = document.getElementById("salir");
+const mostrarDatosDelUsuario = document.getElementById("grilla");
+const audioListo = document.getElementById ("listo");  
 
 let conjuntoIngresos=[];
 let conjuntoGastos =[];
+
+let presionarSalir = false;
 
 const cargarIngresos =()=>{
 conjuntoIngresos.push({
@@ -51,5 +56,33 @@ const mostrarSaldoTotal = ()=>{
     console.log(conjuntoIngresos, conjuntoGastos);
 }
 
+const mostrarDatosDeLasOperaciones=()=>{
+    if(presionarSalir == false){
+        audioListo.play();
+        mostrarDatosDelUsuario.style.display ="grid";presionarSalir = true;
+        cantidadDeingresosyEgresos();
+}
+    else{
+    mostrarDatosDelUsuario.style.display ="none";
+    presionarSalir = false
+}
+}
+
+const cantidadDeingresosyEgresos= ()=>{
+    cargarIngresos();
+    totalIngresos= 0;
+    totalEgresos= 0;
+for (let i = 0; i < conjuntoIngresos.length; i++){
+    totalIngresos = totalIngresos + conjuntoIngresos.monto
+}
+document.getElementById ("cantidadDeIngresos").innerHTML = `${totalIngresos}`;
+for (let i = 0; i < conjuntoGastos.length; i++){
+    totalEgresos = totalEgresos + conjuntoGastos.monto
+}
+
+}
+
+
 botonIngresar.addEventListener ("click", cargarIngresos);
 botonEgresar.addEventListener ("click", cargarGastos);
+botonSalir.addEventListener ("click",mostrarDatosDeLasOperaciones);
