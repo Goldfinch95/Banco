@@ -23,7 +23,8 @@ const botonEgresar = document.getElementById ("egresar");
 const monto = document.getElementById ("numero");
 const descripcion = document.getElementById ("descripcion");
 const botonSalir = document.getElementById("salir");
-const mostrarDatosDelUsuario = document.getElementById("grilla");
+const mostrarDatosDelUsuario = document.getElementById("listaIngresosyEgresos");
+const totales = document.getElementById("listaTotales")
 const audioListo = document.getElementById ("listo");  
 
 let conjuntoIngresos=[];
@@ -59,28 +60,28 @@ const mostrarSaldoTotal = ()=>{
 const mostrarDatosDeLasOperaciones=()=>{
     if(presionarSalir == false){
         audioListo.play();
-        mostrarDatosDelUsuario.style.display ="grid";presionarSalir = true;
+        mostrarDatosDelUsuario.style.display ="flex";
+        totales.style.display="flex";
+        presionarSalir = true;
         cantidadDeingresosyEgresos();
 }
     else{
     mostrarDatosDelUsuario.style.display ="none";
+    totales.style.display="none"
     presionarSalir = false
 }
 }
 
 const cantidadDeingresosyEgresos= ()=>{
-    cargarIngresos();
-    totalIngresos= 0;
-    totalEgresos= 0;
-for (let i = 0; i < conjuntoIngresos.length; i++){
-    totalIngresos = totalIngresos + conjuntoIngresos.monto
-}
-document.getElementById ("cantidadDeIngresos").innerHTML = `${totalIngresos}`;
-for (let i = 0; i < conjuntoGastos.length; i++){
-    totalEgresos = totalEgresos + conjuntoGastos.monto
+    listaDeingresos = "";
+    descripcionesDeIngresos ="";
+    conjuntoIngresos.map ((ingresos)=>{
+        listaDeingresos = listaDeingresos + `${ingresos.monto}<br>`
+        descripcionesDeIngresos = descripcionesDeIngresos + `${ingresos.descripcion}<br>`
+    })
+    document.getElementById ("listaIngresos").innerHTML = `${descripcionesDeIngresos}...${listaDeingresos}`
 }
 
-}
 
 
 botonIngresar.addEventListener ("click", cargarIngresos);
