@@ -74,12 +74,17 @@ const mostrarDatosDeLasOperaciones=()=>{
 
 const cantidadDeingresosyEgresos= ()=>{
     listaDeingresos = "";
+    listaDeEgresos="";
     descripcionesDeIngresos ="";
+    descripcionesDeEgresos="";
     conjuntoIngresos.map ((ingresos)=>{
-        listaDeingresos = listaDeingresos + `${ingresos.monto}<br>`
-        descripcionesDeIngresos = descripcionesDeIngresos + `${ingresos.descripcion}<br>`
+        listaDeingresos = listaDeingresos +  `${ingresos.descripcion} ` + ` ${ingresos.monto}<br>`
     })
-    document.getElementById ("listaIngresos").innerHTML = `${descripcionesDeIngresos}...${listaDeingresos}`
+    conjuntoGastos.map ((egresos)=>{
+        listaDeEgresos = listaDeEgresos + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
+    })
+    document.getElementById ("listaIngresos").innerHTML = `${listaDeingresos}`
+    document.getElementById ("listaEgresos").innerHTML = `${listaDeEgresos}`
 }
 
 
