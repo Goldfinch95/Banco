@@ -24,7 +24,8 @@ const monto = document.getElementById ("numero");
 const descripcion = document.getElementById ("descripcion");
 const botonSalir = document.getElementById("salir");
 const mostrarDatosDelUsuario = document.getElementById("listaIngresosyEgresos");
-const totales = document.getElementById("listaTotales")
+const totales = document.getElementById("totales");
+const lugares = document.getElementById ("lugares");
 const audioListo = document.getElementById ("listo");  
 
 let conjuntoIngresos=[];
@@ -54,7 +55,9 @@ const mostrarSaldoTotal = ()=>{
     let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
     let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
     document.getElementById ("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
-    console.log(conjuntoIngresos, conjuntoGastos);
+    document.getElementById("listaTotales").innerHTML= (`El total de tus ingresos es de: ${totalIngresos}<br> El total de tus egresos es de: ${totalEgresos}`);
+    let ordenDeIngresos = conjuntoIngresos.sort ((a,b)=> b.monto - a.monto);
+       document.getElementById ("puestosDeLosIngresos").innerHTML = (`${ordenDeIngresos}`)
 }
 
 const mostrarDatosDeLasOperaciones=()=>{
@@ -62,12 +65,14 @@ const mostrarDatosDeLasOperaciones=()=>{
         audioListo.play();
         mostrarDatosDelUsuario.style.display ="flex";
         totales.style.display="flex";
+        lugares.style.display="flex";
         presionarSalir = true;
         cantidadDeingresosyEgresos();
 }
     else{
     mostrarDatosDelUsuario.style.display ="none";
-    totales.style.display="none"
+    totales.style.display="none";
+    lugares.style.display="none";
     presionarSalir = false
 }
 }

@@ -165,19 +165,21 @@ input::-webkit-inner-spin-button {
 #listaIngresos{
     font-size: 20px;
 }
+
 .contenedorTotales{
     display: none;
-    justify-content: center;
-    height: 20vh;
 }
-
-.listaTotales{
-    padding: 10px;
+.listasegunda{ padding: 10px;
     margin: 20px 2px;
     width: 100%;
     background: rgba(255, 255, 255, 0.46);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4.2px);
-    -webkit-backdrop-filter: blur(4.2px);
-}
+    -webkit-backdrop-filter: blur(4.2px);}
+   
+    .contenedorLugares{
+        display: none;
+    }
+
+    
