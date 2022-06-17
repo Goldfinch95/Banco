@@ -26,6 +26,8 @@ const botonSalir = document.getElementById("salir");
 const mostrarDatosDelUsuario = document.getElementById("listaIngresosyEgresos");
 const totales = document.getElementById("totales");
 const lugares = document.getElementById ("lugares");
+const promedios = document.getElementById ("promediosDeIngresosyEgresos");
+const saldoFinal = document.getElementById ("saldoFinal");
 const audioListo = document.getElementById ("listo");  
 
 let conjuntoIngresos=[];
@@ -54,10 +56,25 @@ mostrarSaldoTotal();
 const mostrarSaldoTotal = ()=>{
     let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
     let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
-    document.getElementById ("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
+    let saldo = document.getElementById("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
+    if(totalIngresos > totalEgresos){
+        
+        document.getElementById("saldoColor").style.color = "green";
+        document.getElementById("saldoColor").innerHTML= (`${saldo}`);
+    }else{
+        document.getElementById("saldoColor").style.color = "red";
+        document.getElementById("saldoColor").innerHTML = (`${saldo}`);
+    }
     document.getElementById("listaTotales").innerHTML= (`El total de tus ingresos es de: ${totalIngresos}<br> El total de tus egresos es de: ${totalEgresos}`);
-    let ordenDeIngresos = conjuntoIngresos.sort ((a,b)=> b.monto - a.monto);
-       document.getElementById ("puestosDeLosIngresos").innerHTML = (`${ordenDeIngresos}`)
+    let promedioIngresos = totalIngresos.monto / conjuntoIngresos.length;
+    let promedioEgresos = totalEgresos.monto / conjuntoGastos.length;
+    document.getElementById("promedios").innerHTML= (`El promedio de tus ingresos es de ${promedioIngresos}<br>El promedio de tus egresos es de ${promedioEgresos}`);
+    let posicionDeLosMontosDeIngresos = conjuntoIngresos.sort((a,b)=> (b.monto - a.monto));
+    let posicionDeLosMontosDeEgresos = conjuntoGastos.sort ((a,b)=> (b.monto - a.monto));
+    console.log (posicionDeLosMontosDeIngresos);
+    console.log (posicionDeLosMontosDeEgresos);
+    document.getElementById("puestosDeLosIngresos").innerHTML = (`${posicionDeLosMontosDeIngresos.monto}`);
+    document.getElementById("puestosDeLosEgresos").innerHTML = (`${posicionDeLosMontosDeEgresos.monto}`)
 }
 
 const mostrarDatosDeLasOperaciones=()=>{
@@ -66,6 +83,8 @@ const mostrarDatosDeLasOperaciones=()=>{
         mostrarDatosDelUsuario.style.display ="flex";
         totales.style.display="flex";
         lugares.style.display="flex";
+        promedios.style.display ="flex";
+        saldoFinal.style.display ="flex";
         presionarSalir = true;
         cantidadDeingresosyEgresos();
 }
@@ -73,6 +92,8 @@ const mostrarDatosDeLasOperaciones=()=>{
     mostrarDatosDelUsuario.style.display ="none";
     totales.style.display="none";
     lugares.style.display="none";
+    promedios.style.display ="none";
+    saldoFinal.style.display="none";
     presionarSalir = false
 }
 }
