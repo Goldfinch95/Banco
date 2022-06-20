@@ -2,7 +2,7 @@
 1.	Un botonIngresos por trabajos realizados (boton:azul)
 2.Div con tres input (tipo de ingreso, descripción,monto)
 3.	Egresos por compras realizadas (boton: rojo)
-4.div con tres input (tipo de ingreso, descripción, monto)
+4.div con dos input (descripción, monto)
 5.	listo (agregar sonido de herstone (troll))
 Cada ingreso percibido por el usuario, se acumulará y su saldo crecerá. 
 Cada egreso que el usuario genere, se restará del saldo, el cual decrecerá. 
@@ -52,8 +52,6 @@ const cargarGastos=()=>{
 })
 mostrarSaldoTotal();
 }
-
-
 
 const mostrarSaldoTotal = ()=>{
     let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
@@ -105,19 +103,25 @@ const cantidadDeIngresosyEgresos= ()=>{
     conjuntoGastos.map ((egresos)=>{
         listaDeEgresos = listaDeEgresos + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
     })
+    document.getElementById ("cantidadDeIngresos").textContent = ` Cantidad de Ingresos: ${conjuntoIngresos.length}`
+    document.getElementById ("cantidadDeEgresos").textContent = `Cantidad de Egresos: ${conjuntoGastos.length}`
     document.getElementById ("listaIngresos").innerHTML = `${listaDeIngresos}`
     document.getElementById ("listaEgresos").innerHTML = `${listaDeEgresos}`
-    console.log(typeof(conjuntoIngresos));
 }
 
-const posicionesDeIngresosYEgresos=()=>{ 
-    let posicionesDeLosIngresos = conjuntoIngresos.sort((ingresoA,ingresoB)=> (ingresoB.monto - ingresoA.monto));
-    console.log(typeof(posicionesDeLosIngresos));
-    cantidadDeIngresosyEgresos();
-    let posicionesDeLosEgresos = conjuntoGastos.sort((egresoA,egresoB)=> (egresoA.monto - egresoB.monto));
-    
-    document.getElementById("puestosDeLosIngresos").innerHTML = (`${listaDeIngresos}`);
-    document.getElementById("puestosDeLosEgresos").innerHTML = (`${listaDeEgresos}`);
+const posicionesDeIngresosYEgresos=()=>{
+    listaBaseIngreso ="";
+    listaBaseEgreso= "";
+    conjuntoIngresos.sort((ingresoA,ingresoB)=> (ingresoB.monto - ingresoA.monto));
+    conjuntoIngresos.map ((ingresos)=>{
+        listaBaseIngreso = listaBaseIngreso +  `${ingresos.descripcion} ` + ` ${ingresos.monto}<br>`
+    })
+    document.getElementById ("puestosDeLosIngresos").innerHTML = `${listaBaseIngreso}`;
+    conjuntoGastos.sort((egresoA,egresoB)=> (egresoA.monto - egresoB.monto));
+    conjuntoGastos.map ((egresos)=>{
+        listaBaseEgreso = listaBaseEgreso + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
+    })
+    document.getElementById ("puestosDeLosEgresos").innerHTML = `${listaBaseEgreso}`
 }
 
 
