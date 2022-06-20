@@ -53,6 +53,8 @@ const cargarGastos=()=>{
 mostrarSaldoTotal();
 }
 
+
+
 const mostrarSaldoTotal = ()=>{
     let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
     let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
@@ -66,15 +68,10 @@ const mostrarSaldoTotal = ()=>{
         document.getElementById("saldoColor").innerHTML = (`${saldo}`);
     }
     document.getElementById("listaTotales").innerHTML= (`El total de tus ingresos es de: ${totalIngresos}<br> El total de tus egresos es de: ${totalEgresos}`);
-    let promedioIngresos = totalIngresos.monto / conjuntoIngresos.length;
-    let promedioEgresos = totalEgresos.monto / conjuntoGastos.length;
+    let promedioIngresos = totalIngresos / conjuntoIngresos.length;
+    let promedioEgresos = totalEgresos / conjuntoGastos.length;
     document.getElementById("promedios").innerHTML= (`El promedio de tus ingresos es de ${promedioIngresos}<br>El promedio de tus egresos es de ${promedioEgresos}`);
-    let posicionDeLosMontosDeIngresos = conjuntoIngresos.sort((a,b)=> (b.monto - a.monto));
-    let posicionDeLosMontosDeEgresos = conjuntoGastos.sort ((a,b)=> (b.monto - a.monto));
-    console.log (posicionDeLosMontosDeIngresos);
-    console.log (posicionDeLosMontosDeEgresos);
-    document.getElementById("puestosDeLosIngresos").innerHTML = (`${posicionDeLosMontosDeIngresos.monto}`);
-    document.getElementById("puestosDeLosEgresos").innerHTML = (`${posicionDeLosMontosDeEgresos.monto}`)
+
 }
 
 const mostrarDatosDeLasOperaciones=()=>{
@@ -86,7 +83,8 @@ const mostrarDatosDeLasOperaciones=()=>{
         promedios.style.display ="flex";
         saldoFinal.style.display ="flex";
         presionarSalir = true;
-        cantidadDeingresosyEgresos();
+        cantidadDeIngresosyEgresos();
+        posicionesDeIngresosYEgresos();
 }
     else{
     mostrarDatosDelUsuario.style.display ="none";
@@ -98,21 +96,29 @@ const mostrarDatosDeLasOperaciones=()=>{
 }
 }
 
-const cantidadDeingresosyEgresos= ()=>{
-    listaDeingresos = "";
+const cantidadDeIngresosyEgresos= ()=>{
+    listaDeIngresos = "";
     listaDeEgresos="";
-    descripcionesDeIngresos ="";
-    descripcionesDeEgresos="";
     conjuntoIngresos.map ((ingresos)=>{
-        listaDeingresos = listaDeingresos +  `${ingresos.descripcion} ` + ` ${ingresos.monto}<br>`
+        listaDeIngresos = listaDeIngresos +  `${ingresos.descripcion} ` + ` ${ingresos.monto}<br>`
     })
     conjuntoGastos.map ((egresos)=>{
         listaDeEgresos = listaDeEgresos + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
     })
-    document.getElementById ("listaIngresos").innerHTML = `${listaDeingresos}`
+    document.getElementById ("listaIngresos").innerHTML = `${listaDeIngresos}`
     document.getElementById ("listaEgresos").innerHTML = `${listaDeEgresos}`
+    console.log(typeof(conjuntoIngresos));
 }
 
+const posicionesDeIngresosYEgresos=()=>{ 
+    let posicionesDeLosIngresos = conjuntoIngresos.sort((ingresoA,ingresoB)=> (ingresoB.monto - ingresoA.monto));
+    console.log(typeof(posicionesDeLosIngresos));
+    cantidadDeIngresosyEgresos();
+    let posicionesDeLosEgresos = conjuntoGastos.sort((egresoA,egresoB)=> (egresoA.monto - egresoB.monto));
+    
+    document.getElementById("puestosDeLosIngresos").innerHTML = (`${listaDeIngresos}`);
+    document.getElementById("puestosDeLosEgresos").innerHTML = (`${listaDeEgresos}`);
+}
 
 
 botonIngresar.addEventListener ("click", cargarIngresos);
