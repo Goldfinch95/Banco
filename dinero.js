@@ -77,15 +77,20 @@ const mostrarSaldoTotal = ()=>{
     if(totalIngresos > totalEgresos){
         document.getElementById("saldo").style.color = "green";
         document.getElementById("saldo").innerHTML= (`${saldo}`);
+        document.getElementById("saldoFinal").style.color = "green";
+        document.getElementById("saldoFinal").innerHTML= (`${saldo}`);
     }else{
         document.getElementById("saldo").style.color = "red";
         document.getElementById("saldo").innerHTML = (`${saldo}`);
+        document.getElementById("saldoFinal").style.color = "red";
+        document.getElementById("saldoFinal").innerHTML= (`${saldo}`);
     }
-    document.getElementById("totalDeIngresos").innerHTML = (`Total de ingresos: ${totalIngresos}`);
-    document.getElementById("totalDeEgresos").innerHTML = (`Total de egresos: ${totalEgresos}`);
+    document.getElementById("totalDeIngresos").innerHTML = (`Valor total de ingresos: $${totalIngresos}`);
+    document.getElementById("totalDeEgresos").innerHTML = (`Valor total de egresos: $${totalEgresos}`);
     let promedioIngresos = totalIngresos / conjuntoIngresos.length;
     let promedioEgresos = totalEgresos / conjuntoGastos.length;
-    document.getElementById("promedios").innerHTML= (`El promedio de tus ingresos es de ${promedioIngresos}<br>El promedio de tus egresos es de ${promedioEgresos}`);
+    document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: $${promedioIngresos}`);
+    document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de Egresos: $${promedioEgresos}`);
 
 }
 
@@ -94,15 +99,13 @@ const cantidadDeIngresosyEgresos= ()=>{
     listaDeIngresos = "";
     listaDeEgresos="";
     conjuntoIngresos.map ((ingresos)=>{
-        listaDeIngresos = listaDeIngresos +  `${ingresos.descripcion} ` + ` ${ingresos.monto}<br>`
+        listaDeIngresos = listaDeIngresos +  `$${ingresos.monto} - ${ingresos.descripcion}<br>`
     })
     conjuntoGastos.map ((egresos)=>{
-        listaDeEgresos = listaDeEgresos + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
+        listaDeEgresos = listaDeEgresos + `$${egresos.monto} - ${egresos.descripcion}<br>` 
     })
     document.getElementById ("cantidadDeOperacionesDeIngreso").textContent = `Cantidad de ingresos : ${conjuntoIngresos.length}`
     document.getElementById ("cantidadDeOperacionesDeEgresos").textContent = `Cantidad de Egresos : ${conjuntoGastos.length}`
-    document.getElementById ("listaIngresos").innerHTML = `${listaDeIngresos}`
-    document.getElementById ("listaEgresos").innerHTML = `${listaDeEgresos}`
 }
 
 const posicionesDeIngresosYEgresos=()=>{
@@ -110,14 +113,14 @@ const posicionesDeIngresosYEgresos=()=>{
     listaBaseEgreso= "";
     conjuntoIngresos.sort((ingresoA,ingresoB)=> (ingresoB.monto - ingresoA.monto));
     conjuntoIngresos.map ((ingresos)=>{
-        listaBaseIngreso = listaBaseIngreso +  `${ingresos.descripcion} ` + ` ${ingresos.monto}<br>`
-    })
-    document.getElementById ("puestosDeLosIngresos").innerHTML = `${listaBaseIngreso}`;
-    conjuntoGastos.sort((egresoA,egresoB)=> (egresoA.monto - egresoB.monto));
+        listaBaseIngreso = listaBaseIngreso +  `$${ingresos.monto} - ${ingresos.descripcion}<br>`
+    });
+    conjuntoGastos.sort((egresoA,egresoB)=> (egresoB.monto - egresoA.monto));
     conjuntoGastos.map ((egresos)=>{
-        listaBaseEgreso = listaBaseEgreso + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
-    })
-    document.getElementById ("puestosDeLosEgresos").innerHTML = `${listaBaseEgreso}`
+        listaBaseEgreso = listaBaseEgreso + `$${egresos.monto} - ${egresos.descripcion}<br>` 
+    });
+    document.getElementById ("lugaresDeLosIngresos").innerHTML = `Posicion de los ingresos: <br>${listaBaseIngreso}`;
+    document.getElementById ("lugaresDeLosEgresos").innerHTML = `Posicion de los egresos: <br>${listaBaseEgreso}`
 }
 
 
