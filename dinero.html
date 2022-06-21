@@ -15,7 +15,7 @@
         <img src="oro.png" class="logo">
         <h3 class="presentación">Banco Gringotts</h3>
     </div>
-    <div class="contenedor">
+    <div class="contenedor" id="primerContenedor">
         <div class="vidrio">
             <div class="titulo">
                 <h1 class="titulo">Ingrese los datos</h1>
@@ -29,41 +29,23 @@
                 <button id="salir" class="boton__2"><i class="fa-solid fa-door-open"></i></button>
                 <audio src="listo.mp3" id="listo"></audio>
             </div>
-        <div class="contenedorIngresosyEgresos" id="listaIngresosyEgresos">
-            <div  class="lista" id="cantidadDeIngresos">Ingresos
-                <ul id="listaIngresos"></ul>
-            </div>
-            <div class="lista" id="cantidadDeEgresos">Gastos
-                <ul id="listaEgresos"></ul>
-            </div>
-        </div>
-        <div class="contenedorTotales" id="totales">
-            <div class="listasegunda">Totales
-            <ul id="listaTotales"></ul>
-            </div>
-        </div>
-        <div class="contenedorLugares" id="lugares">
-            <div class="lista" >Mayores ingresos
-                <ul id="puestosDeLosIngresos"></ul>
-            </div>
-            <div class="lista">Mayores gastos
-                <ul id="puestosDeLosEgresos"></ul>
-            </div>
-        </div>
-        <div class="contenedorPromedios" id="promediosDeIngresosyEgresos">
-            <div class="tituloPromedios">Promedios
-                <ul id="promedios">
-                </ul>
-            </div>
-        </div>
-        <div class="contenedorSaldo" id="saldoFinal">
-            <div class="saldoTotal">Saldo total
-                <ul id="saldoColor">
-                </ul>
-            </div>
-        </div>
         </div>
     </div>
+    <div class="segundoContenedor" id="segundoContenedor">
+        <div class="segundoVidrio" id="informacionExtra">
+            <ul id="cantidadDeOperacionesDeIngreso">Cantidad de ingresos: 3</ul>
+            <ul id="cantidadDeOperacionesDeEgresos">Cantidad de egresos: 3</ul>
+            <ul id="totalDeIngresos">Total de ingresos: 100</ul>
+            <ul id="totalDeEgresos">Total de egresos: 50</ul>
+            <ul id="">Posicion de los ingresos: 300,200,100</ul>
+            <ul id="">Posicion de los egresos: 300,200,100</ul>
+            <ul id="">Promedio de ingresos: 10</ul>
+            <ul id="">Promedio de egresos: 10</ul>
+            <ul id="">Saldo total: 50</ul>
+        </div>
+        
+    </div>
+
 <script src="dinero.js"></script>
 </body>
 </html>

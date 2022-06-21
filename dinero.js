@@ -23,7 +23,8 @@ const botonEgresar = document.getElementById ("egresar");
 const monto = document.getElementById ("numero");
 const descripcion = document.getElementById ("descripcion");
 const botonSalir = document.getElementById("salir");
-const mostrarDatosDelUsuario = document.getElementById("listaIngresosyEgresos");
+const vidrio = document.getElementById("primerContenedor");
+const segundoVidrio= document.getElementById ("segundoContenedor");
 const totales = document.getElementById("totales");
 const lugares = document.getElementById ("lugares");
 const promedios = document.getElementById ("promediosDeIngresosyEgresos");
@@ -53,46 +54,41 @@ const cargarGastos=()=>{
 mostrarSaldoTotal();
 }
 
+const mostrarDatosDeLasOperaciones=()=>{
+    if(presionarSalir == false){
+        audioListo.play();
+        vidrio.style.display="none"
+        segundoVidrio.style.display ="flex"
+        presionarSalir = true;
+        cantidadDeIngresosyEgresos();
+        posicionesDeIngresosYEgresos();
+}
+    else{
+    vidrio.style.display="flex";
+    segundoVidrio.style.display ="none"
+    presionarSalir = false
+}
+}
+
 const mostrarSaldoTotal = ()=>{
     let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
     let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
     let saldo = document.getElementById("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
     if(totalIngresos > totalEgresos){
-        
-        document.getElementById("saldoColor").style.color = "green";
-        document.getElementById("saldoColor").innerHTML= (`${saldo}`);
+        document.getElementById("saldo").style.color = "green";
+        document.getElementById("saldo").innerHTML= (`${saldo}`);
     }else{
-        document.getElementById("saldoColor").style.color = "red";
-        document.getElementById("saldoColor").innerHTML = (`${saldo}`);
+        document.getElementById("saldo").style.color = "red";
+        document.getElementById("saldo").innerHTML = (`${saldo}`);
     }
-    document.getElementById("listaTotales").innerHTML= (`El total de tus ingresos es de: ${totalIngresos}<br> El total de tus egresos es de: ${totalEgresos}`);
+    document.getElementById("totalDeIngresos").innerHTML = (`Total de ingresos: ${totalIngresos}`);
+    document.getElementById("totalDeEgresos").innerHTML = (`Total de egresos: ${totalEgresos}`);
     let promedioIngresos = totalIngresos / conjuntoIngresos.length;
     let promedioEgresos = totalEgresos / conjuntoGastos.length;
     document.getElementById("promedios").innerHTML= (`El promedio de tus ingresos es de ${promedioIngresos}<br>El promedio de tus egresos es de ${promedioEgresos}`);
 
 }
 
-const mostrarDatosDeLasOperaciones=()=>{
-    if(presionarSalir == false){
-        audioListo.play();
-        mostrarDatosDelUsuario.style.display ="flex";
-        totales.style.display="flex";
-        lugares.style.display="flex";
-        promedios.style.display ="flex";
-        saldoFinal.style.display ="flex";
-        presionarSalir = true;
-        cantidadDeIngresosyEgresos();
-        posicionesDeIngresosYEgresos();
-}
-    else{
-    mostrarDatosDelUsuario.style.display ="none";
-    totales.style.display="none";
-    lugares.style.display="none";
-    promedios.style.display ="none";
-    saldoFinal.style.display="none";
-    presionarSalir = false
-}
-}
 
 const cantidadDeIngresosyEgresos= ()=>{
     listaDeIngresos = "";
@@ -103,8 +99,8 @@ const cantidadDeIngresosyEgresos= ()=>{
     conjuntoGastos.map ((egresos)=>{
         listaDeEgresos = listaDeEgresos + `${egresos.descripcion} ` + ` ${egresos.monto}<br>` 
     })
-    document.getElementById ("cantidadDeIngresos").textContent = ` Cantidad de Ingresos: ${conjuntoIngresos.length}`
-    document.getElementById ("cantidadDeEgresos").textContent = `Cantidad de Egresos: ${conjuntoGastos.length}`
+    document.getElementById ("cantidadDeOperacionesDeIngreso").textContent = `Cantidad de ingresos : ${conjuntoIngresos.length}`
+    document.getElementById ("cantidadDeOperacionesDeEgresos").textContent = `Cantidad de Egresos : ${conjuntoGastos.length}`
     document.getElementById ("listaIngresos").innerHTML = `${listaDeIngresos}`
     document.getElementById ("listaEgresos").innerHTML = `${listaDeEgresos}`
 }

@@ -35,6 +35,13 @@ backdrop-filter: blur(2.4px);
 
 }
 
+.segundoContenedor{
+    display: none;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+}
+
 .vidrio{
     justify-content: center;
     align-items: center;
@@ -48,10 +55,26 @@ backdrop-filter: blur(2.4px);
     -webkit-backdrop-filter: blur(4.2px);
 }
 
+.segundoVidrio{
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px; 
+    padding: 20px 20px;
+    font-size: 25px;
+    height: 70vh;
+    width: 60%;
+    background: rgba(255, 255, 255, 0.46);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.2px);
+    -webkit-backdrop-filter: blur(4.2px);
+}
+
 .titulo{
     text-align: center;
     font-size: 40px;
 }
+
 
 
 input{
@@ -142,15 +165,12 @@ input::-webkit-inner-spin-button {
   margin-bottom: 20px;
 }
 
+
 .contenedor{
     display: flex;
   padding-top: 30px;
 }
 
-.contenedorIngresosyEgresos{
-    display: none;
-    text-align: center;
-}
 
 .lista{
     margin: 20px 2px;
@@ -167,10 +187,6 @@ input::-webkit-inner-spin-button {
     font-size: 20px;
 }
 
-.contenedorTotales{
-    display: none;
-    text-align: center;
-}
 .listasegunda{ 
     padding: 10px;
     margin: 20px 2px;
@@ -181,15 +197,6 @@ input::-webkit-inner-spin-button {
     backdrop-filter: blur(4.2px);
     -webkit-backdrop-filter: blur(4.2px);}
    
-.contenedorLugares{
-    display: none;
-    text-align: center;
-}
-
-.contenedorPromedios{
-    display: none;
-    text-align: center;
-}
 
 .tituloPromedios{
     padding: 10px;
@@ -202,10 +209,6 @@ input::-webkit-inner-spin-button {
     -webkit-backdrop-filter: blur(4.2px);
 }
 
-.contenedorSaldo{
-    display: none;
-    text-align: center;
-}
 
 .saldoTotal{
     font-size: 60px;
