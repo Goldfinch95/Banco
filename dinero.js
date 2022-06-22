@@ -92,8 +92,8 @@ const mostrarSaldoTotal = ()=>{
       totalEgresos = 0
       console.log(totalIngresos);
     }else{
-        let promedioIngresos = Number((totalIngresos / conjuntoIngresos.length).toFixed(2));
-        let promedioEgresos = Number((totalEgresos / conjuntoGastos.length).toFixed(2));
+        let promedioIngresos = Number(((totalIngresos / conjuntoIngresos.length)||0).toFixed(2));
+        let promedioEgresos = Number(((totalEgresos / conjuntoGastos.length)|| 0).toFixed(2));
         document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: ${promedioIngresos}`);
         document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de Egresos: ${promedioEgresos}`);
     }
