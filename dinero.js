@@ -15,7 +15,7 @@ Cuando el usuario elija la opción salir del programa se deberá visualizar:
 5.	El ingreso que más dinero representó y que lugar ocupó (1ero, 2do, 3ero etc)
 6.	El egreso que más dinero representó y que lugar ocupó (1ero, 2do, 3ero etc)
 7.	El promedio de pesos por ingresos.
-8.	El promedio de pesos por egresos. 
+8.	El promedio de pesos por egresos.
 9.	El saldo (dinero que le quedó al usuario). Si el saldo del usuario es mayor o igual a cero se deberá mostrar en verde. Si es menor que cero en rojo.*/
 
 const botonIngresar = document.getElementById ("ingresar");
@@ -87,12 +87,18 @@ const mostrarSaldoTotal = ()=>{
     }
     document.getElementById("totalDeIngresos").innerHTML = (`Valor total de ingresos: $${totalIngresos}`);
     document.getElementById("totalDeEgresos").innerHTML = (`Valor total de egresos: $${totalEgresos}`);
-    let promedioIngresos = totalIngresos / conjuntoIngresos.length;
-    let promedioEgresos = totalEgresos / conjuntoGastos.length;
-    document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: $${promedioIngresos}`);
-    document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de Egresos: $${promedioEgresos}`);
-
+    if(isNaN(totalIngresos)|| isNaN(totalEgresos)){
+      totalIngresos = 0
+      totalEgresos = 0
+      console.log(totalIngresos);
+    }else{
+        let promedioIngresos = Number((totalIngresos / conjuntoIngresos.length).toFixed(2));
+        let promedioEgresos = Number((totalEgresos / conjuntoGastos.length).toFixed(2));
+        document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: ${promedioIngresos}`);
+        document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de Egresos: ${promedioEgresos}`);
+    }
 }
+    
 
 
 const cantidadDeIngresosyEgresos= ()=>{
