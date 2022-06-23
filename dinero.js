@@ -93,9 +93,9 @@ const mostrarSaldoTotal = ()=>{
       console.log(totalIngresos);
     }else{
         let promedioIngresos = Number(((totalIngresos / conjuntoIngresos.length)||0).toFixed(2));
-        let promedioEgresos = Number(((totalEgresos / conjuntoGastos.length)|| 0).toFixed(2));
-        document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: ${promedioIngresos}`);
-        document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de Egresos: ${promedioEgresos}`);
+        let promedioEgresos = Number(((totalEgresos / conjuntoGastos.length)||0).toFixed(2));
+        document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: $${promedioIngresos}`);
+        document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de egresos: $${promedioEgresos}`);
     }
 }
     
@@ -111,7 +111,7 @@ const cantidadDeIngresosyEgresos= ()=>{
         listaDeEgresos = listaDeEgresos + `$${egresos.monto} - ${egresos.descripcion}<br>` 
     })
     document.getElementById ("cantidadDeOperacionesDeIngreso").textContent = `Cantidad de ingresos : ${conjuntoIngresos.length}`
-    document.getElementById ("cantidadDeOperacionesDeEgresos").textContent = `Cantidad de Egresos : ${conjuntoGastos.length}`
+    document.getElementById ("cantidadDeOperacionesDeEgresos").textContent = `Cantidad de egresos : ${conjuntoGastos.length}`
 }
 
 const posicionesDeIngresosYEgresos=()=>{

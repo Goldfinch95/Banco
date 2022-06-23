@@ -35,35 +35,11 @@ backdrop-filter: blur(2.4px);
 
 }
 
-.segundoContenedor{
-    display: none;
-    flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  padding-top: 30px;
-}
-
 .vidrio{
     justify-content: center;
     align-items: center;
     margin: 20px 20px;
     height: 70vh;
-    width: 60%;
-    background: rgba(255, 255, 255, 0.46);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.2px);
-    -webkit-backdrop-filter: blur(4.2px);
-}
-
-.segundoVidrio{
-    flex-basis: 900px;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 20px; 
-    padding: 20px 20px;
-    font-size: 25px;
-    height: 100%;
     width: 60%;
     background: rgba(255, 255, 255, 0.46);
     border-radius: 16px;
@@ -167,17 +143,24 @@ input::-webkit-inner-spin-button {
   margin-bottom: 20px;
 }
 
-
-.contenedor{
-    display: flex;
+.segundoContenedor{
+    display: none;
+    flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   padding-top: 30px;
 }
 
-
-.lista{
-    margin: 20px 2px;
-    height: 70vh;
-    width: 50%;
+.segundoVidrio{
+    flex-basis: 900px;
+    justify-content: center;
+    align-items: center;
+    font-family:'Lateef',cursive;
+    margin: 20px 20px; 
+    padding: 20px 20px;
+    font-size: 25px;
+    height: 100%;
+    width: 60%;
     background: rgba(255, 255, 255, 0.46);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -185,42 +168,10 @@ input::-webkit-inner-spin-button {
     -webkit-backdrop-filter: blur(4.2px);
 }
 
-#listaIngresos{
-    font-size: 20px;
+h4{
+    text-align: right;
+    margin-right: 50px;
 }
-
-.listasegunda{ 
-    padding: 10px;
-    margin: 20px 2px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.46);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.2px);
-    -webkit-backdrop-filter: blur(4.2px);}
-   
-
-.tituloPromedios{
-    padding: 10px;
-    margin: 20px 2px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.46);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.2px);
-    -webkit-backdrop-filter: blur(4.2px);
-}
-
-
-.saldoTotal{
+#saldoFinal{
     font-size: 60px;
-    padding: 10px;
-    margin: 20px 2px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.46);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.2px);
-    -webkit-backdrop-filter: blur(4.2px);
 }
-    
