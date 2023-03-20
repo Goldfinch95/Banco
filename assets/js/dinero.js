@@ -61,64 +61,29 @@ const addMoneyOut = ()=>{
     return totalSpends
 }
 
-const showTotalBalance = (income, spend) =>{
-    TotalBalance.innerHTML = (`$ ${income - spend}`);
-}
-
-/*const mostrarSaldoTotal = ()=>{
-    let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
-    let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
-    let saldo = document.getElementById("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
-    if(totalIngresos > totalEgresos){
-        document.getElementById("saldo").style.color = "green";
-        document.getElementById("saldo").innerHTML= (`${saldo}`);
-        document.getElementById("saldoFinal").style.color = "green";
-        document.getElementById("saldoFinal").innerHTML= (`${saldo}`);
-    }else{
-        document.getElementById("saldo").style.color = "red";
-        document.getElementById("saldo").innerHTML = (`${saldo}`);
-        document.getElementById("saldoFinal").style.color = "red";
-        document.getElementById("saldoFinal").innerHTML= (`${saldo}`);
+const showTotalBalance = (total) =>{
+    if(total > 1){
+        TotalBalance.style.color = "green";
+        TotalBalance.innerHTML= (`$ ${total}`);
     }
-    document.getElementById("totalDeIngresos").innerHTML = (`Valor total de ingresos: $${totalIngresos}`);
-    document.getElementById("totalDeEgresos").innerHTML = (`Valor total de egresos: $${totalEgresos}`);
-    if(isNaN(totalIngresos)|| isNaN(totalEgresos)){
-      totalIngresos = 0
-      totalEgresos = 0
-      console.log(totalIngresos);
-    }else{
-        let promedioIngresos = Number(((totalIngresos / conjuntoIngresos.length)||0).toFixed(2));
-        let promedioEgresos = Number(((totalEgresos / conjuntoGastos.length)||0).toFixed(2));
-        document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: $${promedioIngresos}`);
-        document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de egresos: $${promedioEgresos}`);
+    else{
+        TotalBalance.style.color = "red";
+        TotalBalance.innerHTML = (`$ ${total}`);
     }
 }
-/*const cargarIngresos =()=>{
-    conjuntoIngresos.push({
-        tipoTransaccion: "Ingreso",
-        descripcion: descripcion.value,
-        monto: (Number(monto.value)),
-    })
-    mostrarSaldoTotal ();
-    }*/
-
-
-/*botonIngresar.addEventListener ("click", cargarIngresos);*/
-
-
 
 btnDeposit.addEventListener("click", ()=>{
     loadRevenueToIncomeMoneyArray();
     const totalIncomeMoney = addMoneyIncome();
-    //console.log(totalIncomeMoney)
-    showTotalBalance(totalIncomeMoney)
+    const totalMoneyOut = addMoneyOut();
+    showTotalBalance(totalIncomeMoney - totalMoneyOut)
 })
 
 btnSpend.addEventListener("click", ()=>{
     loadExpensesToMonetaryArrayOfExpenses();
     const totalMoneyOut = addMoneyOut();
-    //console.log(totalMoneyOut)
-    showTotalBalance(totalMoneyOut)
+    const totalIncomeMoney = addMoneyIncome();
+    showTotalBalance(totalIncomeMoney - totalMoneyOut)
 })
 
 
