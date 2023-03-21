@@ -22,14 +22,22 @@ const inputAmount = document.getElementById ("input__amount");
 const btnDeposit = document.getElementById ("button__deposit");
 const btnSpend = document.getElementById ("button__spend");
 const TotalBalance = document.getElementById("total__balance");
-/*const botonSalir = document.getElementById("salir");
-const vidrio = document.getElementById("primerContenedor");
-const segundoVidrio= document.getElementById ("segundoContenedor");
-const totales = document.getElementById("totales");
-const lugares = document.getElementById ("lugares");
-const promedios = document.getElementById ("promediosDeIngresosyEgresos");
-const saldoFinal = document.getElementById ("saldoFinal");
-const audioListo = document.getElementById ("listo");*/
+const btnNextGlass = document.getElementById("button__next-glass");
+const audioReady = document.getElementById ("sound__ready");
+const firstGlass = document.getElementById("first__container");
+const secondGlass = document.getElementById ("second__container");
+const ulAmountIncome = document.getElementById("ul__amount-of-money-income");
+const ulAmountOfOuts = document.getElementById("ul__amount-of-money-outs");
+const ulTotalMoneyIncome = document.getElementById("ul__total-money-income");
+const ulTotalMoneyOut = document.getElementById("ul__total-outflows-of-money");
+const ulPlacesOfIncome = document.getElementById("ul__places-of-income");
+const ulPlacesOfMoneyOutflows = document.getElementById("ul__places-of-money-outflows");
+const ulAverageMoneyIncome = document.getElementById("ul__average-money-income");
+const ulAverageMoneyDischarged = document.getElementById("ul__average-of-the-discharges");
+const ulEndingBalance = document.getElementById("ul__ending-balance");
+
+
+let pressNext = false;
 
 let incomeMoney = [];
 let moneyOut = [];
@@ -65,12 +73,76 @@ const showTotalBalance = (total) =>{
     if(total > 1){
         TotalBalance.style.color = "green";
         TotalBalance.innerHTML= (`$ ${total}`);
+        ulEndingBalance.style.color = "green";
+        ulEndingBalance.innerHTML= (`${total}`);
     }
     else{
         TotalBalance.style.color = "red";
         TotalBalance.innerHTML = (`$ ${total}`);
+        ulEndingBalance.style.color = "red";
+        ulEndingBalance.innerHTML= (`${total}`);
     }
 }
+
+const amountOfIncome = ()=>{
+    incomeList = "";
+    incomeMoney.map ((income)=>{
+        incomeList = incomeList +  `$${income.amount} - ${income.description}<br>`
+    })
+    return incomeList
+}
+
+const sortIncome = ()=>{
+    incomeList = "";
+    incomeMoney.sort((incomeA,incomeB)=> (incomeB.amount - incomeA.amount));
+    incomeMoney.map ((income)=>{
+        incomeList = incomeList +  `$${income.amount} - ${income.description}<br>`
+    });
+    return incomeList
+}
+
+const sortOutFlows = ()=>{
+    outFlowList= "";
+    moneyOut.sort((dischargeA,dischargeB)=> (dischargeB.amount - dischargeA.amount));
+    moneyOut.map ((discharge)=>{
+        outFlowList = outFlowList + `$${discharge.amount} - ${discharge.description}<br>` 
+    });
+    return outFlowList
+}
+
+const getAverageIncome = (totalIncomeMoney)=>{
+    let averageIncome = Number(((totalIncomeMoney / incomeMoney.length)||0).toFixed(2));
+    return averageIncome
+}
+
+const getAverageDischarged = (totalMoneyOut)=>{
+    let averageDischarged = Number(((totalMoneyOut / moneyOut.length)||0).toFixed(2));
+    return averageDischarged
+}
+
+const showSecondGlassAndHideFirstGlass = ()=>{
+    if(pressNext == false){
+        firstGlass.style.display="none"
+        secondGlass.style.display ="flex"
+        pressNext = true;
+    }
+    else{
+        firstGlass.style.display="flex";
+        secondGlass.style.display ="none";
+        pressNext = false;
+    }
+}
+
+const displayDataInSecondGlass = (totalIncomeMoney, totalMoneyOut, incomePosition, outFlowsPosition, averageIncome, averageDischarged)=>{
+    ulAmountIncome.textContent = `Cantidad de ingresos : ${incomeMoney.length}`
+    ulAmountOfOuts.textContent = `Cantidad de egreso : ${moneyOut.length}`
+    ulTotalMoneyIncome.innerHTML = `Valor total de ingresos: $${totalIncomeMoney}`;
+    ulTotalMoneyOut.innerHTML = `Valor total de egreso: $${totalMoneyOut}`;
+    ulPlacesOfIncome.innerHTML = `Posición de los ingresos: <br>${incomePosition}`;
+    ulPlacesOfMoneyOutflows.innerHTML = `Posición de los egreso: <br>${outFlowsPosition}`
+    ulAverageMoneyIncome.innerHTML= (`Promedio de ingresos: $${averageIncome}`);
+    ulAverageMoneyDischarged.innerHTML=(`Promedio de egreso: $${averageDischarged}`);
+};
 
 btnDeposit.addEventListener("click", ()=>{
     loadRevenueToIncomeMoneyArray();
@@ -86,122 +158,16 @@ btnSpend.addEventListener("click", ()=>{
     showTotalBalance(totalIncomeMoney - totalMoneyOut)
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-let conjuntoIngresos=[];
-let conjuntoGastos =[];
-
-let presionarSalir = false;
-
-const cargarIngresos =()=>{
-conjuntoIngresos.push({
-    tipoTransaccion: "Ingreso",
-    descripcion: descripcion.value,
-    monto: (Number(monto.value)),
+btnNextGlass.addEventListener("click",()=>{
+    audioReady.play();
+    amountOfIncome();
+    const totalIncomeMoney = addMoneyIncome();
+    const totalMoneyOut = addMoneyOut();
+    const incomePosition = sortIncome();
+    const outFlowsPosition = sortOutFlows();
+    const averageIncome = getAverageIncome(totalIncomeMoney);
+    const averageDischarged = getAverageDischarged(totalMoneyOut);
+    showSecondGlassAndHideFirstGlass();
+    displayDataInSecondGlass(totalIncomeMoney, totalMoneyOut, incomePosition, outFlowsPosition, averageIncome, averageDischarged);
+    showTotalBalance(totalIncomeMoney - totalMoneyOut)
 })
-mostrarSaldoTotal ();
-} 
-
-const cargarGastos=()=>{
-    conjuntoGastos.push ({
-    tipoTransaccion: "Egreso",
-    descripcion: descripcion.value,
-    monto: (Number(monto.value)),
-})
-mostrarSaldoTotal();
-}
-
-const mostrarDatosDeLasOperaciones=()=>{
-    if(presionarSalir == false){
-        audioListo.play();
-        vidrio.style.display="none"
-        segundoVidrio.style.display ="flex"
-        presionarSalir = true;
-        cantidadDeIngresosyEgresos();
-        posicionesDeIngresosYEgresos();
-}
-    else{
-    vidrio.style.display="flex";
-    segundoVidrio.style.display ="none"
-    presionarSalir = false
-}
-}
-
-const mostrarSaldoTotal = ()=>{
-    let totalIngresos = conjuntoIngresos.reduce((acc, ingresos) => acc + ingresos.monto, 0);
-    let totalEgresos = conjuntoGastos.reduce((acc, gastos)=> acc + gastos.monto, 0);
-    let saldo = document.getElementById("saldo").innerHTML= (`$ ${totalIngresos - totalEgresos}`);
-    if(totalIngresos > totalEgresos){
-        document.getElementById("saldo").style.color = "green";
-        document.getElementById("saldo").innerHTML= (`${saldo}`);
-        document.getElementById("saldoFinal").style.color = "green";
-        document.getElementById("saldoFinal").innerHTML= (`${saldo}`);
-    }else{
-        document.getElementById("saldo").style.color = "red";
-        document.getElementById("saldo").innerHTML = (`${saldo}`);
-        document.getElementById("saldoFinal").style.color = "red";
-        document.getElementById("saldoFinal").innerHTML= (`${saldo}`);
-    }
-    document.getElementById("totalDeIngresos").innerHTML = (`Valor total de ingresos: $${totalIngresos}`);
-    document.getElementById("totalDeEgresos").innerHTML = (`Valor total de egresos: $${totalEgresos}`);
-    if(isNaN(totalIngresos)|| isNaN(totalEgresos)){
-      totalIngresos = 0
-      totalEgresos = 0
-      console.log(totalIngresos);
-    }else{
-        let promedioIngresos = Number(((totalIngresos / conjuntoIngresos.length)||0).toFixed(2));
-        let promedioEgresos = Number(((totalEgresos / conjuntoGastos.length)||0).toFixed(2));
-        document.getElementById("promedioDeLosIngresos").innerHTML= (`Promedio de ingresos: $${promedioIngresos}`);
-        document.getElementById("promedioDeLosEgresos").innerHTML=(`Promedio de egresos: $${promedioEgresos}`);
-    }
-}
-    
-
-
-const cantidadDeIngresosyEgresos= ()=>{
-    listaDeIngresos = "";
-    listaDeEgresos="";
-    conjuntoIngresos.map ((ingresos)=>{
-        listaDeIngresos = listaDeIngresos +  `$${ingresos.monto} - ${ingresos.descripcion}<br>`
-    })
-    conjuntoGastos.map ((egresos)=>{
-        listaDeEgresos = listaDeEgresos + `$${egresos.monto} - ${egresos.descripcion}<br>` 
-    })
-    document.getElementById ("cantidadDeOperacionesDeIngreso").textContent = `Cantidad de ingresos : ${conjuntoIngresos.length}`
-    document.getElementById ("cantidadDeOperacionesDeEgresos").textContent = `Cantidad de egresos : ${conjuntoGastos.length}`
-}
-
-const posicionesDeIngresosYEgresos=()=>{
-    listaBaseIngreso ="";
-    listaBaseEgreso= "";
-    conjuntoIngresos.sort((ingresoA,ingresoB)=> (ingresoB.monto - ingresoA.monto));
-    conjuntoIngresos.map ((ingresos)=>{
-        listaBaseIngreso = listaBaseIngreso +  `$${ingresos.monto} - ${ingresos.descripcion}<br>`
-    });
-    conjuntoGastos.sort((egresoA,egresoB)=> (egresoB.monto - egresoA.monto));
-    conjuntoGastos.map ((egresos)=>{
-        listaBaseEgreso = listaBaseEgreso + `$${egresos.monto} - ${egresos.descripcion}<br>` 
-    });
-    document.getElementById ("lugaresDeLosIngresos").innerHTML = `Posicion de los ingresos: <br>${listaBaseIngreso}`;
-    document.getElementById ("lugaresDeLosEgresos").innerHTML = `Posicion de los egresos: <br>${listaBaseEgreso}`
-}
-
-
-botonIngresar.addEventListener ("click", cargarIngresos);
-botonEgresar.addEventListener ("click", cargarGastos);
-botonSalir.addEventListener ("click",mostrarDatosDeLasOperaciones);
-*/
